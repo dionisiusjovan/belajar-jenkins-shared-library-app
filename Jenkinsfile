@@ -18,7 +18,7 @@ pipeline {
         stage("Test") {
             steps {
                 echo "Hello Test"
-                sh("error")
+                /* sh("error") */
             }
         }
         stage("Deploy") {
