@@ -19,8 +19,7 @@ pipeline {
 
             def result = currentBuild.currentResult.toLowerCase()
             def WEBHOOK_URL = "https://discord.com/api/webhooks/1097057271076364328/OmDZQ6TA-mnXD-9JTXoY0zOFerAjWZLFvpCBcQGMnrReDzX7M3SbO-0gduZf0difRHE8"
-            discordSend description: "Jenkins Pipeline Build", 
-                        link: env.BUILD_URL, 
+            discordSend link: env.BUILD_URL, 
                         result: currentBuild.currentResult, 
                         title: JOB_NAME, 
                         webhookURL: WEBHOOK_URL,
