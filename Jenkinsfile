@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             label {
-                "jenkins-agent1"
+                "java11 && linux"
             }
         }
     }
