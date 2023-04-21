@@ -12,6 +12,11 @@ pipeline {
         WEBHOOK_URL = credentials("DISCORD_WEBHOOK_URL")
     }
 
+    triggers {
+        // cron("*/5 * * * * *")
+        pollSCM("*/5 * * * * *")
+    }
+
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
