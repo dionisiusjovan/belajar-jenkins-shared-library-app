@@ -20,7 +20,7 @@ pipeline {
                 }
             }
             steps {
-                echo "Discord Webhook URL: ${WEBHOOK_URL}"
+                sh('echo "Discord Webhook URL: $WEBHOOK_URL"')
                 echo "Start Job: ${env.JOB_NAME}"
                 echo "Start Build: ${env.BUILD_NUMBER}"
                 echo "Branch Name: ${env.BRANCH_NAME}"
@@ -84,7 +84,7 @@ pipeline {
             discordSend link: env.BUILD_URL, 
                         result: currentBuild.description, 
                         title: JOB_NAME, 
-                        webhookURL: WEBHOOK_URL,
+                        webhookURL: credentials("DISCORD_WEBHOOK_URL"),
                         description: "**Build:** ${env.BUILD_NUMBER}\n**Status:** ${currentBuild.currentResult.toLowerCase()}\n\u2060", /* word joiner character forces a blank line */
                         enableArtifactsList: true,
                         showChangeset: true
