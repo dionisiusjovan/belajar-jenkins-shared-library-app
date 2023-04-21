@@ -1,9 +1,12 @@
 pipeline {
+    /*
     agent {
         node {
             label "java11 && linux"
         }
     }
+    */
+    agent none
 
     environment {
         WEBHOOK_URL = "https://discord.com/api/webhooks/1097057271076364328/OmDZQ6TA-mnXD-9JTXoY0zOFerAjWZLFvpCBcQGMnrReDzX7M3SbO-0gduZf0difRHE8"
@@ -11,6 +14,11 @@ pipeline {
 
     stages {
         stage("Build") {
+            agent {
+                node {
+                    label "java11 && linux"
+                }
+            }
             steps {
                 script {
                     for (int i = 0; i < 10; i++) {
@@ -24,6 +32,11 @@ pipeline {
             }
         }
         stage("Test") {
+            agent {
+                node {
+                    label "java11 && linux"
+                }
+            }
             steps {
                 script {
                     def data = [
@@ -39,6 +52,11 @@ pipeline {
             }
         }
         stage("Deploy") {
+            agent {
+                node {
+                    label "java11 && linux"
+                }
+            }
             steps {
                 echo "Hello Deploy"
             }
