@@ -19,5 +19,12 @@ pipeline {
                 }
             }
         }
+        stage ("Hello Groovy Steps") {
+            steps {
+                script {
+                    Output.hello_param(this, "Groovy Steps")
+                }
+            }
+        }
     }
 }
