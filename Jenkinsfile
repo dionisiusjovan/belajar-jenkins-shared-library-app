@@ -12,6 +12,11 @@ pipeline {
         WEBHOOK_URL = credentials("DISCORD_WEBHOOK_URL")
     }
 
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
     stages {
         stage("Prepare") {
             agent {
