@@ -109,8 +109,12 @@ pipeline {
                 message "Can we deploy?"
                 ok "Yes"
                 submitter "admin"
+                parameters {
+                    choice(name: "TARGET_ENV", choices: ['DEV', 'QA', 'PROD'], description: "Which ENV?")
+                }
             }
             steps {
+                echo "DEPLOYING TO ${TARGET_ENV}"
                 echo "Hello Deploy"
             }
         }
