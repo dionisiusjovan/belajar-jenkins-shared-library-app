@@ -32,6 +32,7 @@ pipeline {
     }
 
     stages {
+        /*
         stage("Preparation") {
             agent {
                 node {
@@ -47,6 +48,34 @@ pipeline {
                 stage("Prepare Maven") {
                     steps {
                         echo "Loading Maven"
+                    }
+                }
+            }
+        }
+        */
+        stage("Parallel Preparation") {
+            
+            parallel {
+                stage("Prepare Java") {
+                    agent {
+                        node {
+                            label "java11 && linux"
+                        }
+                    }
+                    steps {
+                        echo "Loading Java"
+                        sleep(5)
+                    }
+                }
+                stage("Prepare Maven") {
+                    agent {
+                        node {
+                            label "java11 && linux"
+                        }
+                    }
+                    steps {
+                        echo "Loading Maven"
+                        sleep(5)
                     }
                 }
             }
