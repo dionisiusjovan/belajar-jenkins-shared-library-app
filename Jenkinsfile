@@ -53,6 +53,34 @@ pipeline {
             }
         }
         */
+
+        stage("OS Setup") {
+            matrix {
+                axes {
+                    axis {
+                        name "OS"
+                        values "linux", "windows", "mac"
+                    }
+                    axis {
+                        name "ARC"
+                        values "32", "64"
+                    }
+                }
+            }
+            stages {
+                stage("OS Setup") {
+                    agent {
+                        node {
+                            label "java11 && linux"
+                        }
+                    }
+                    steps {
+                        echo "Setup ${OS} ${ARC}"
+                    }
+                }
+            }
+        }
+
         stage("Parallel Preparation") {
             
             parallel {
