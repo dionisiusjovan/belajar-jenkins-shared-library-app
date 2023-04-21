@@ -84,7 +84,7 @@ pipeline {
             discordSend link: env.BUILD_URL, 
                         result: currentBuild.description, 
                         title: JOB_NAME, 
-                        webhookURL: WEBHOOK_URL,
+                        webhookURL: "https://discord.com/api/webhooks/1097057271076364328/OmDZQ6TA-mnXD-9JTXoY0zOFerAjWZLFvpCBcQGMnrReDzX7M3SbO-0gduZf0difRHE8",
                         description: "**Build:** ${env.BUILD_NUMBER}\n**Status:** ${currentBuild.currentResult.toLowerCase()}\n\u2060", /* word joiner character forces a blank line */
                         enableArtifactsList: true,
                         showChangeset: true
