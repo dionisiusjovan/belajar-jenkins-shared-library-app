@@ -17,6 +17,14 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
 
+    parameter {
+        string(name: "NAME", defaultValue: "Guest", description: "What is your Name?")
+        text(name: "DESCP", defaultValue: "", description: "Tell us about you?")
+        booleanParam(name: "DEPLOY", defaultValue: false description: "Need to deploy?")
+        choice(name: "SOCIAL_MEDIA", choices: ['Instagram', 'Facebook', 'Twitter'], description: "Which Social Media?")
+        password(name: "SECRET", defaultValue: "", description: "Encrypt key")
+    }
+
     stages {
         stage("Prepare") {
             agent {
@@ -29,6 +37,26 @@ pipeline {
                 echo "Start Job: ${env.JOB_NAME}"
                 echo "Start Build: ${env.BUILD_NUMBER}"
                 echo "Branch Name: ${env.BRANCH_NAME}"
+                echo "Parameter"
+                echo "Hello ${params.NAME}"
+                echo "Descp: ${params.DESCP}"
+                echo "Deploy: ${params.DEPLOY}"
+                echo "Secret Key: ${params.SECRET}"
+            }
+        }
+
+        stage("Parameters") {
+            agent {
+                node {
+                    label "java11 && linux"
+                }
+            }
+            steps {
+                echo "Hello ${params.NAME}"
+                echo "Descp: ${params.DESCP}"
+                echo "Choice: ${params.SOCIAL_MEDIA}"
+                echo "Deploy: ${params.DEPLOY}"
+                echo "Secret Key: ${params.SECRET}"
             }
         }
 
