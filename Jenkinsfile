@@ -12,7 +12,15 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                echo "Hello Build"
+                script {
+                    for (int i = 0; i < 10; i++) {
+                        echo "Script ${i}"
+                    }
+                }
+
+                echo "Start Build"
+                sh("./mvnw clean compile test-compile")
+                echo "Finish Build"
             }
         }
         stage("Test") {
