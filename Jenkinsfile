@@ -66,16 +66,16 @@ pipeline {
                         values "32", "64"
                     }
                 }
-            }
-            stages {
-                stage("OS Setup") {
-                    agent {
-                        node {
-                            label "java11 && linux"
+                stages {
+                    stage("OS Setup") {
+                        agent {
+                            node {
+                                label "java11 && linux"
+                            }
                         }
-                    }
-                    steps {
-                        echo "Setup ${OS} ${ARC}"
+                        steps {
+                            echo "Setup ${OS} ${ARC}"
+                        }
                     }
                 }
             }
