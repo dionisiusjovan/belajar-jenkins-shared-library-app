@@ -13,6 +13,19 @@ pipeline {
     }
 
     stages {
+        stage("Prepare") {
+            agent {
+                node {
+                    label "java11 && linux"
+                }
+            }
+            steps {
+                echo "Start Job: ${env.JOB_NAME}"
+                echo "Start Build: ${env.BUILD_NUMBER}"
+                echo "Branch Name: ${env.BRANCH_NAME}"
+            }
+        }
+
         stage("Build") {
             agent {
                 node {
@@ -68,7 +81,7 @@ pipeline {
             echo "Send notification to discord"
 
             discordSend link: env.BUILD_URL, 
-                        result: currentBuild.currentResult, 
+                        result: currentBuild.description, 
                         title: JOB_NAME, 
                         webhookURL: WEBHOOK_URL,
                         description: "**Build:** ${env.BUILD_NUMBER}\n**Status:** ${currentBuild.currentResult.toLowerCase()}\n\u2060", /* word joiner character forces a blank line */
