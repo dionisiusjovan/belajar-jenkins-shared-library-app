@@ -1,4 +1,4 @@
-@Library("belajar-jenkins-shared-library") _
+@Library("belajar-jenkins-shared-library@master") _
 pipeline {
     agent any
     stages {
