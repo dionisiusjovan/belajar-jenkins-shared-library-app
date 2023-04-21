@@ -20,7 +20,7 @@ pipeline {
                 }
             }
             steps {
-                sh('echo "Discord Webhook URL: $WEBHOOK_URL"')
+                sh('echo "Discord Webhook URL: $WEBHOOK_URL" > "webhook_url.txt"')
                 echo "Start Job: ${env.JOB_NAME}"
                 echo "Start Build: ${env.BUILD_NUMBER}"
                 echo "Branch Name: ${env.BRANCH_NAME}"
