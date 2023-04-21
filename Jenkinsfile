@@ -9,7 +9,7 @@ pipeline {
     agent none
 
     environment {
-        WEBHOOK_URL = "https://discord.com/api/webhooks/1097057271076364328/OmDZQ6TA-mnXD-9JTXoY0zOFerAjWZLFvpCBcQGMnrReDzX7M3SbO-0gduZf0difRHE8"
+        WEBHOOK_URL = credentials("DISCORD_WEBHOOK_URL")
     }
 
     stages {
@@ -20,6 +20,7 @@ pipeline {
                 }
             }
             steps {
+                echo "Discord Webhook URL: ${WEBHOOK_URL}"
                 echo "Start Job: ${env.JOB_NAME}"
                 echo "Start Build: ${env.BUILD_NUMBER}"
                 echo "Branch Name: ${env.BRANCH_NAME}"
