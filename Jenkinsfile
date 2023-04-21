@@ -17,7 +17,7 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
 
-    parameter {
+    parameters {
         string(name: "NAME", defaultValue: "Guest", description: "What is your Name?")
         text(name: "DESCP", defaultValue: "", description: "Tell us about you?")
         booleanParam(name: "DEPLOY", defaultValue: false, description: "Need to deploy?")
