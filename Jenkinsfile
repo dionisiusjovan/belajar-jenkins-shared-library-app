@@ -10,6 +10,7 @@ pipeline {
 
     environment {
         WEBHOOK_URL = credentials("DISCORD_WEBHOOK_URL")
+
     }
 
     // triggers {
@@ -221,6 +222,15 @@ pipeline {
             }
             steps {
                 echo "Release"
+                
+                // credentials binding
+                withCredentials([usernamePassword(
+                    credentialsId: "eko_rahasia",
+                    usernameVariable: "USER",
+                    passwordVariable: "PASSWORD"
+                )]){
+                    sh('echo "Release with -u $USER -p $PASSWORD" > "release.txt"')
+                }
             }
         }
     }
