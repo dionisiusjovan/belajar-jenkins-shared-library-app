@@ -32,6 +32,26 @@ pipeline {
     }
 
     stages {
+        stage("Preparation") {
+            agent {
+                node {
+                    label "java11 && linux"
+                }
+            }
+            stages {
+                stage("Prepare Java") {
+                    steps {
+                        echo "Loading Java"
+                    }
+                }
+                stage("Prepare Maven") {
+                    steps {
+                        echo "Loading Maven"
+                    }
+                }
+            }
+        }
+
         stage("Prepare") {
             agent {
                 node {
@@ -124,7 +144,7 @@ pipeline {
                     return params.DEPLOY
                 }
             }
-            
+
             agent {
                 node {
                     label "java11 && linux"
