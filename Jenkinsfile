@@ -11,9 +11,14 @@ pipeline {
                     echo author()
                     echo author.name()
                     echo author.channel()
+                    echo person([
+                        firstName: "Programmer", lastName: "Zaman Now"
+                    ])
                 }
             }
         }
+        
+        /*
         stage ("Execute Maven") {
             steps {
                 script {
@@ -22,7 +27,6 @@ pipeline {
                 }
             }
         }
-        /*
         stage ("Hello World") {
             steps {
                 script {
