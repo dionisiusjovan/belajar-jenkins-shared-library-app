@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }
-        stage ("Global Variable") {
+        stage ("Execute Maven") {
             steps {
                 script {
                     maven('clean compile')
