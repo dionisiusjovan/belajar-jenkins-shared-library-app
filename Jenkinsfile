@@ -14,6 +14,13 @@ pipeline {
                 }
             }
         }
+        stage ("Global Variable") {
+            steps {
+                script {
+                    maven('clean compile')
+                }
+            }
+        }
         /*
         stage ("Hello World") {
             steps {
