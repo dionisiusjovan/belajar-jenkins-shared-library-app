@@ -5,6 +5,15 @@ import programmerzamannow.jenkins.Output
 pipeline {
     agent any
     stages {
+        stage ("Library Resources") {
+            steps {
+                script {
+                    def config = libraryResource("build.json")
+                    echo config
+                }
+            }
+        }
+        /*
         stage ("Global Variable") {
             steps {
                 script {
@@ -14,11 +23,10 @@ pipeline {
                     echo person([
                         firstName: "Programmer", lastName: "Zaman Now"
                     ])
+
                 }
             }
         }
-        
-        /*
         stage ("Execute Maven") {
             steps {
                 script {
