@@ -2,7 +2,9 @@
 
 import programmerzamannow.jenkins.Output
 
-mavenPipeline()
+pznPipeline([type: "wrong"])
+
+//mavenPipeline()
 
 /*
 pipeline {
